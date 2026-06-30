@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metode Pembayaran - AURA Fashion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="checkout-header">
+            <button class="back-btn" onclick="window.location.href='checkout.html'" aria-label="Kembali ke Checkout">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+            <h2 style="font-size: 16px; font-weight: 700;">Metode Pembayaran</h2>
+        </header>
+
+        <!-- Main Content -->
+        <main class="checkout-container">
+            
+            <!-- Invoice ID & Total Amount -->
+            <div class="checkout-section" style="background: var(--accent-gradient); color: #121212; display: flex; justify-content: space-between; align-items: center; padding: 18px;">
+                <div>
+                    <span style="font-size: 10px; text-transform: uppercase; font-weight: 700; opacity: 0.85;">No. Invoice Pesanan</span>
+                    <h3 style="font-size: 16px; font-weight: 800;" id="payInvoiceId">INV-628491</h3>
+                </div>
+                <div style="text-align: right;">
+                    <span style="font-size: 10px; text-transform: uppercase; font-weight: 700; opacity: 0.85;">Total Pembayaran</span>
+                    <h3 style="font-size: 18px; font-weight: 800;" id="payTotalAmount">Rp 0</h3>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h3 class="section-title">Pilih Pembayaran</h3>
+            </div>
+
+            <!-- Payment Methods list selectors -->
+            <div class="payment-methods-grid">
+                
+                <!-- QRIS (Default Selected) -->
+                <div class="payment-method-card active" data-method="QRIS">
+                    <div class="payment-method-info">
+                        <img class="payment-method-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" alt="QRIS">
+                        <span class="payment-method-name">QRIS Gopay/OVO/ShopeePay</span>
+                    </div>
+                    <div class="payment-method-radio"></div>
+                </div>
+
+                <!-- DANA E-Wallet -->
+                <div class="payment-method-card" data-method="DANA">
+                    <div class="payment-method-info">
+                        <img class="payment-method-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.png" alt="DANA">
+                        <span class="payment-method-name">DANA Instant Redirect</span>
+                    </div>
+                    <div class="payment-method-radio"></div>
+                </div>
+
+                <!-- BCA VA -->
+                <div class="payment-method-card" data-method="BCA_VA">
+                    <div class="payment-method-info">
+                        <!-- Simulated logo text for cleaner loading -->
+                        <span style="background-color: #005a9c; color: white; padding: 3px 6px; font-weight: 800; font-size: 10px; border-radius: 4px;">BCA VA</span>
+                        <span class="payment-method-name">BCA Virtual Account</span>
+                    </div>
+                    <div class="payment-method-radio"></div>
+                </div>
+
+            </div>
+
+            <!-- Dynamic Instruction Box Container -->
+            <div class="checkout-section" style="padding: 12px;">
+                <h3 class="checkout-section-title" style="margin-bottom: 8px;">Petunjuk Pembayaran</h3>
+                <div id="paymentInstructions">
+                    <!-- Renders dynamically through app.js -->
+                </div>
+            </div>
+
+            <!-- Summary Total Confirmation Panel -->
+            <div class="checkout-section">
+                <div class="summary-row" style="margin-bottom: 0;">
+                    <span>Total Pembayaran Akhir</span>
+                    <span class="total-price" style="font-size: 16px; font-weight: 800;" id="payTotalRecap">Rp 0</span>
+                </div>
+            </div>
+
+            <button id="confirmPaymentBtn" class="btn btn-primary btn-block" style="font-size: 15px; padding: 14px; margin-bottom: 24px;">Konfirmasi Pembayaran Selesai</button>
+
+        </main>
+
+        <!-- ==========================================
+             🎉 PAYMENT SUCCESS DIGITAL RECEIPT SCREEN OVERLAY
+             ========================================== -->
+        <div id="successOverlay" class="success-overlay">
+            
+            <div class="success-icon-wrapper">
+                ✓
+            </div>
+            
+            <h2 class="success-title">Pembayaran Sukses!</h2>
+            <p class="success-desc">Pesanan Anda telah diterima dan sedang dipersiapkan oleh toko kami.</p>
+
+            <!-- Receipt print card layout -->
+            <div class="receipt-card">
+                <h3 style="font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 12px; border-bottom: 1.5px dashed var(--border-color); padding-bottom: 8px;">STRUK BELANJA DIGITAL</h3>
+                
+                <div class="receipt-row">
+                    <span>No. Invoice</span>
+                    <span id="recInvoice" style="font-weight: 600;">INV-000000</span>
+                </div>
+                
+                <div class="receipt-row">
+                    <span>Tanggal</span>
+                    <span id="recDate">30 Juni 2026</span>
+                </div>
+
+                <div class="receipt-row">
+                    <span>Metode Bayar</span>
+                    <span id="recMethod" style="text-transform: uppercase;">QRIS</span>
+                </div>
+
+                <div class="receipt-row">
+                    <span>Status Pesanan</span>
+                    <span style="color: var(--success); font-weight: 700;">DIPROSES</span>
+                </div>
+
+                <div class="receipt-row receipt-total">
+                    <span>Total Pembayaran</span>
+                    <span id="recTotal" style="color: var(--accent-color); font-weight: 700;">Rp 0</span>
+                </div>
+            </div>
+
+            <button id="btnSuccessDone" class="btn btn-primary" style="width: 200px;">Lihat Riwayat Belanja</button>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN APP ENGINE -->
+    <script src="app.js"></script>
+</body>
+</html>

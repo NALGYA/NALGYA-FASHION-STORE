@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Pengiriman - AURA Fashion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="checkout-header">
+            <button class="back-btn" onclick="window.location.href='index.html?tab=cart'"
+                aria-label="Kembali ke Keranjang">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
+            <h2 style="font-size: 16px; font-weight: 700;">Checkout Pengiriman</h2>
+        </header>
+
+        <!-- Main Container -->
+        <main class="checkout-container">
+            <form id="checkoutDetailsForm">
+
+                <!-- Alamat Pengiriman Section -->
+                <section class="checkout-section">
+                    <h3 class="checkout-section-title">Alamat Pengiriman</h3>
+
+                    <div class="form-group">
+                        <label for="custName">Nama Penerima</label>
+                        <input type="text" id="custName" class="form-control" placeholder="Masukkan nama lengkap..."
+                            required value="calluna">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="custPhone">Nomor Telepon (WhatsApp)</label>
+                        <input type="tel" id="custPhone" class="form-control" placeholder="Contoh: 081234567890..."
+                            required value="081234567890">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="custAddress">Alamat Lengkap</label>
+                        <textarea id="custAddress" class="form-control" rows="3"
+                            placeholder="Nama jalan, nomor rumah, RT/RW, kecamatan, kota..."
+                            required>Jl. kalimalang No. 03, bekasi Barat,Jawa Barat, 17145</textarea>
+                    </div>
+                </section>
+
+                <!-- Kurir Ekspedisi Section -->
+                <section class="checkout-section">
+                    <h3 class="checkout-section-title">Metode Pengiriman</h3>
+                    <div class="form-group">
+                        <label for="courierSelect">Pilih Kurir Ekspedisi</label>
+                        <select id="courierSelect" class="form-control" style="cursor: pointer;" required>
+                            <option value="" disabled>-- Pilih Kurir --</option>
+                            <option value="10000">Sicepat Halur - Rp 10.000 (2-3 Hari)</option>
+                            <option value="12000" selected>J&T Express Reguler - Rp 12.000 (1-2 Hari)</option>
+                            <option value="15000">JNE YES Kilat - Rp 15.000 (1 Hari)</option>
+                            <option value="25000">GoSend Instant - Rp 25.000 (3 Jam)</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!-- Daftar Belanja Ringkasan Section -->
+                <section class="checkout-section">
+                    <h3 class="checkout-section-title">Ringkasan Barang</h3>
+                    <div id="checkoutItemsPreview">
+                        <!-- Loaded dynamically from cart State -->
+                    </div>
+                </section>
+
+                <!-- Total Rincian Pembayaran Section -->
+                <section class="checkout-section" style="margin-bottom: 24px;">
+                    <h3 class="checkout-section-title">Detail Pembayaran</h3>
+
+                    <div class="summary-row">
+                        <span>Subtotal Barang</span>
+                        <span id="checkoutSubtotal">Rp 0</span>
+                    </div>
+
+                    <div class="summary-row discount" id="checkoutDiscountRow">
+                        <span>Kupon Diskon Belanja</span>
+                        <span id="checkoutDiscount">Rp 0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Ongkos Kirim</span>
+                        <span id="checkoutShipping">Rp 0</span>
+                    </div>
+
+                    <div class="summary-row summary-total">
+                        <span>Total Tagihan</span>
+                        <span class="total-price" id="checkoutTotal">Rp 0</span>
+                    </div>
+                </section>
+
+                <button type="submit" class="btn btn-primary btn-block"
+                    style="font-size: 15px; padding: 14px;">Lanjutkan ke Pembayaran</button>
+
+            </form>
+        </main>
+
+    </div>
+
+    <!-- MAIN APP ENGINE -->
+    <script src="app.js"></script>
+</body>
+
+</html>
